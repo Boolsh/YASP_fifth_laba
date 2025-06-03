@@ -18,7 +18,7 @@ std::chrono::year_month_day read_ymd_input(const std::string& prompt) {
     std::chrono::year_month_day today = std::chrono::floor<std::chrono::days>(std::chrono::system_clock::now());
     std::chrono::year_month_day current_ymd = std::chrono::year_month_day{ today };
 
-    while (true) 
+    while (true)
     {
         std::cout << "\n" << prompt;
         std::string input;
@@ -56,7 +56,7 @@ void validation(T& x, Predicat condition, std::string message)
 void print_to_file(Vector<Employee>& arr)
 {
     std::string filename;
-    std::cout << "Введите имя файла "; std::cin >> filename;
+    std::cout << "Введите имя файла"; std::cin >> filename;
     std::ofstream file(filename);
     arr.print_list(file);
     std::cout << "\nИнформация записана в файл " << filename << "\n";
@@ -110,6 +110,7 @@ void sample()
         << "Дата_увольнения (- если нет)\nДолжность (Cleaner, Cook, Manager, Developer, HR, Analyst)\nПол (Male, Female, Frog)\nЗарплата\n"
         << "В конце ввода нажмите Ctrl+Z:\n";
 }
+
 
 int main()
 {
@@ -186,7 +187,6 @@ int main()
                 case 6://Изменить запись
                 {
                     int ind; validation(ind, [arr](int x) {return x > 0 and x < arr.size(); }, "\nКакой элемент поменять?\n");
-                    sample();
                     Employee newEmp;
                     std::cin >> newEmp;
                     arr.modify(ind, newEmp);
@@ -203,8 +203,7 @@ int main()
                         {return emp.get_salary() < salary2 and
                         emp.get_salary() > salary1; }, a)) print_selection(a);
                     else std::cout << "\nПодходящих значений не найдено\n";
-
-                    break;
+                        break;
                 }
                 case 8://Выборка по фамилии
                 {
@@ -261,12 +260,14 @@ int main()
                 {
                     if (arr.size() != 0)
                     {
+                        //bool inc = 12 == action;
+
                         arr.sort_by([](const Employee& a, const Employee& b)
                             { if (a.get_surname() != b.get_surname()) return a.get_surname() < b.get_surname();
-                        return a.get_name() < b.get_name(); }, false);
+                        return a.get_name() < b.get_name(); }, false); //inc
                         std::cout << "\nСписок отсортирован\n";
                     }
-                    else 
+                    else
                         std::cout << "\nСписок пуст\n";
                     break;
                 }
@@ -280,50 +281,43 @@ int main()
         break;
     } while (source_choice != 0);
 
-   
+        //SALARY SELECTION
+            //int salary1 = 10000, salary2 = 20001;
+            //arr.select([salary1, salary2](const Employee& emp) {return emp.get_salary() < salary2 and emp.get_salary() > salary1; }, a);
+            //SURNAME SELECTION
+            //std::string surname1 = "Bebra", surname2 = "Qewish";
+            //arr.select([surname1, surname2](const Employee& emp) {return emp.get_surname() < surname2 and emp.get_surname() > surname1; }, a);
+            //SEX SELECTION
+            //arr.select([](const Employee& emp) {return emp.get_sex() == Sex::Male; }, a);
+            //arr.select([](const Employee& emp) {return emp.get_sex() == Sex::Female; }, a);
+            //arr.select([](const Employee& emp) {return emp.get_sex() == Sex::Frog; }, a);
+            //DAY SELECTION
+            //std::chrono::year_month_day date = read_ymd_input("Введите дату для поиска:");
+            //bool sel_flag = arr.select([date](const Employee& emp) {return emp.get_applyment_date() < date and emp.get_fire_date()> date; }, a);
+            // Sort
+            //arr.print_list();
+            //arr.sort_by([](const Employee& a, const Employee& b) { if (a.get_surname() != b.get_surname()) return a.get_surname() < b.get_surname(); return a.get_name() < b.get_name(); },true);
+            //std::cout << "\n--------------------------------------\n";
+            //arr.print_list();
+
+                //std::cin >> emp;
+                //std::cout << emp << std::endl;
+
+                //arr.add(emp);
+            //arr.print_list();
+            //std::cout << "-----------------------------------------------------\n";
+            //std::cout << "Введите сотрудника\n";
+            //std::cin >> emp;
+            //arr.remove_by_value(emp);
+
+            //std::vector<int> a = { 1,2,3,4,5 };
 
 
 
+            //(file >> emp);
+            //std::cout << emp;
 
-
-
-    //SALARY SELECTION
-    //int salary1 = 10000, salary2 = 20001;
-    //arr.select([salary1, salary2](const Employee& emp) {return emp.get_salary() < salary2 and emp.get_salary() > salary1; }, a);
-    //SURNAME SELECTION
-    //std::string surname1 = "Bebra", surname2 = "Qewish";
-    //arr.select([surname1, surname2](const Employee& emp) {return emp.get_surname() < surname2 and emp.get_surname() > surname1; }, a);
-    //SEX SELECTION
-    //arr.select([](const Employee& emp) {return emp.get_sex() == Sex::Male; }, a);
-    //arr.select([](const Employee& emp) {return emp.get_sex() == Sex::Female; }, a);
-    //arr.select([](const Employee& emp) {return emp.get_sex() == Sex::Frog; }, a);
-    //DAY SELECTION
-    //std::chrono::year_month_day date = read_ymd_input("Введите дату для поиска:");
-    //bool sel_flag = arr.select([date](const Employee& emp) {return emp.get_applyment_date() < date and emp.get_fire_date()> date; }, a);
-    // Sort
-    //arr.print_list();
-    //arr.sort_by([](const Employee& a, const Employee& b) { if (a.get_surname() != b.get_surname()) return a.get_surname() < b.get_surname(); return a.get_name() < b.get_name(); },true);
-    //std::cout << "\n--------------------------------------\n";
-    //arr.print_list();
-
-        //std::cin >> emp;
-        //std::cout << emp << std::endl;
-
-        //arr.add(emp);
-    //arr.print_list();
-    //std::cout << "-----------------------------------------------------\n";
-    //std::cout << "Введите сотрудника\n";
-    //std::cin >> emp;
-    //arr.remove_by_value(emp);
-    
-    //std::vector<int> a = { 1,2,3,4,5 };
-
-
-
-    //(file >> emp);
-    //std::cout << emp;
-
-    //Employee emp;
-    //while (file >> emp)
-    //    std::cout << emp << std::endl;
+            //Employee emp;
+            //while (file >> emp)
+            //    std::cout << emp << std::endl;
 }

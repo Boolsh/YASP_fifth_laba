@@ -13,7 +13,6 @@ class Vector
 {
 private:
     std::vector<T> arr;
-
 public:
     Vector() = default;
 
@@ -31,7 +30,7 @@ public:
     }
 
     bool empty() { return arr.empty(); }
-    
+
 
     void fill_list(std::istream& stream)
     {
@@ -43,7 +42,6 @@ public:
         out << "--------------------------------------------\n";
         std::copy(arr.begin(), arr.end(), std::ostream_iterator<T>(out, "\n"));
         out << "--------------------------------------------\n";
-
     }
 
     void add(T& emp)
@@ -94,7 +92,7 @@ public:
             std::sort(arr.begin(), arr.end(), comparator);
         }
         else {
-            std::sort(arr.begin(), arr.end(),[&comparator](const T& a, const T& b) { return !comparator(a, b); });
+            std::sort(arr.begin(), arr.end(), [&comparator](const T& a, const T& b) { return !comparator(a, b); });
         }
     }
 
@@ -103,8 +101,3 @@ public:
     const T& operator[](size_t index) const { return arr[index]; }
 
 };
-
-
-
-
-
